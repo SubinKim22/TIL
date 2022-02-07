@@ -314,3 +314,56 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 github에서 clone 후 개인 branch에서 새로운 작업을 하고 git push origin master가 아닌 git push origin branch를 통해
 merge를 request하고 다시 pull하는 작업
 ```
+
+
+
+# TIL
+
+
+
+## 22.02.07
+
+### apply + lambda
+
+```
+def black(x):
+    if x in ['Midnight Black','Aura Black','Prism Black']:        
+        return 'Black'
+    else:
+        return x    
+        
+data['color'].apply(lambda x: black(x))
+```
+
+* 열에 함수 적용
+
+
+
+### 레이블 인코딩(Label Encoding)
+
+* 간단하게 문자열을 숫자형 카테고리로. 
+  하지만 숫자끼리의 크고 작음의 특성이 부여되므로 ML알고리즘에서 가중치 부여될 수 있음
+  트리계열(Decision / Random)을 제외한 다른 머신러닝 알고리즘에서 사용 조심해야함.
+  트리계열은 대소 비교를 통해서 구분하기 때문에 숫자 단위에 크게 영향받지 않는다.
+
+
+
+### literal_eval
+
+```
+from ast import literal_eval
+
+코드 적용 전
+'[{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 14, "name": "Fantasy"}, {"id": 878, "name": "Science Fiction"}]'
+
+코드 적용
+movies_df['genres'] = movies_df['genres'].apply(literal_eval)
+
+코드 적용 후
+[{'id': 28, 'name': 'Action'},
+ {'id': 12, 'name': 'Adventure'},
+ {'id': 14, 'name': 'Fantasy'},
+ {'id': 878, 'name': 'Science Fiction'}]
+```
+
+* 칼럼들의 str 형태(문자형)을 list 형태로 바꿔주기
