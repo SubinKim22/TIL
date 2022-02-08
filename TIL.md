@@ -367,3 +367,50 @@ movies_df['genres'] = movies_df['genres'].apply(literal_eval)
 ```
 
 * 칼럼들의 str 형태(문자형)을 list 형태로 바꿔주기
+
+
+
+## 22.02.08 
+
+### 코사인 유사도 (추천 시스템)
+
+```
+from sklearn.metrics.pairwise import cosine_similarity
+
+item_sim = cosine_similarity(ratings_matrix_T, ratings_matrix_T)
+```
+
+
+
+### 협업 필터링
+
+#### 최근접 이웃 기반
+
+* 사용자 기반 : 특정 **사용자**와 비슷한 고객들을 기반으로 그들이 선호하는 다른 상품을 추천
+
+* 아이템 기반 : 특정 **상품**과 유사한 좋은 평가를 받은 다른 비슷한 상품을 추천
+
+  * 아이템 기반 협업 필터링이 더 선호되는 방법
+
+  * 구현 순서
+
+    1. 사용자-아이템 행렬 데이터를 아이템-사용자 행렬 데이터로 변환(전치)
+
+    2. 아이템간의 코사인 유사도로 아이템 유사도 산출
+
+    3. 사용자가 구매하지 않은 아이템들 중에서 아이템간 유사도를 반영한 예측 점수 계산
+
+       ```
+       def predict_rating(ratings_arr, item_sim_arr):
+           ratings_pred = ratings_arr.dot(item_sim_arr)/ np.array([np.abs(item_sim_arr).sum(axis=1)])
+           return ratings_pred
+           
+          
+       # 원본 값 ratings * 코사인유사도값 
+       ratings_pred = predict_rating(ratings_matrix.values , item_sim_df.values)
+       ```
+
+       
+
+    4. 예측 점수가 가장 높은 순으로 아이템 추천
+
