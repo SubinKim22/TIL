@@ -414,3 +414,11 @@ item_sim = cosine_similarity(ratings_matrix_T, ratings_matrix_T)
 
     4. 예측 점수가 가장 높은 순으로 아이템 추천
 
+
+
+## 22.02.15
+
+### 취업특강
+
+* 자세한 내용은 노션, 메모장 확인
+
