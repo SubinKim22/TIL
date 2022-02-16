@@ -430,7 +430,7 @@ item_sim = cosine_similarity(ratings_matrix_T, ratings_matrix_T)
 
 #### 효율적인 알고리즘 작성
 
-1. **for - if **
+1. **for - if**
 
 ```
 houses = [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
