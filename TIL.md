@@ -422,3 +422,55 @@ item_sim = cosine_similarity(ratings_matrix_T, ratings_matrix_T)
 
 * 자세한 내용은 노션, 메모장 확인
 
+
+
+## 22.02.16
+
+### 알고리즘 특강 1일차
+
+#### 효율적인 알고리즘 작성
+
+1. **for - if **
+
+```
+houses = [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+
+ready = True  # 기본 가정 : 
+
+for house in houses:
+    if house == 1:
+        ready = False
+        break  # if문에도 break 가능! => 바로 끝나버리기 때문에 효율적이다.
+
+print(ready)
+```
+
+
+
+2. **min 함수 만들기**
+
+```
+nums = [1, 5 ,77, 26, 33, 2, 6, 16, 55]
+
+min_num = nums[0] # 리스트 속 처음 숫자를 시작으로 잡음.
+
+for num in nums:
+    if num <= min_num:
+        min_num = num
+
+print(min_num)
+
+
+-------------------------------
+# 조금 더 효율적으로 ( 등호 제거, 첫 요소 뽑았으므로 비교 안해도 됨)
+
+nums = [1, 5 ,77, 26, 33, 2, 6, 16, 55]
+
+min_num = nums[0] # 리스트 속 처음 숫자를 시작으로 잡음.
+
+for num in nums[1:]:
+    if num < min_num:
+        min_num = num
+
+print(min_num)
+```
