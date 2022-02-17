@@ -474,3 +474,110 @@ for num in nums[1:]:
 
 print(min_num)
 ```
+
+
+
+
+
+## 22.02.17
+
+### 알고리즘 특강 2일차
+
+1. **map 함수 + input**
+
+```
+nums_list = list(map(int, input().split()))
+
+nums_list
+```
+
+* str타입의 띄어쓰기를 포함한 input을 줄 때, 이를 리스트화 하는 방법 
+  * ex)  1 2 3 4 5     =>     [1,2,3,4,5]
+
+
+
+#### swea 문제
+
+1. **min-max**
+
+```
+T = int(input())
+
+for rep in range(T) :
+    
+    N = int(input())
+
+    nums_list = list(map(int, input().split()))
+
+    max_num = nums_list[0]
+    min_num = nums_list[0]
+
+
+    for num in nums_list[1:] :
+        if num > max_num :
+            max_num = num
+
+        if num < min_num :
+            min_num = num
+
+    print('#{} {}'.format(rep + 1, max_num - min_num))
+```
+
+
+
+2. **숫자카드**
+
+```
+T = int(input())
+
+for rep in range(T) :
+    
+    N = int(input())
+
+    card_list = list(map(int,input()))
+
+    card_count = [0] * 10
+
+    for num in card_list:
+        card_count[num] += 1
+
+
+    max_card_index = 0
+    max_card_num = 0
+
+    for idx, value in enumerate(card_count) :
+        if value >= max_card_num :
+            max_card_num = value
+            max_card_index = idx
+    print('#{} {} {}'.format(rep + 1, max_card_index, max_card_num))
+```
+
+
+
+3. **구간합**
+
+````
+T = int(input())
+
+for rep in range(T) :
+    
+    N , M = map(int,input().split())   # map함수 써서 동시에 주기
+
+    nums_list = list(map(int, input().split()))
+
+    max_num_sum = 0                    # 처음 합으로 줘도 되지만 그냥 0으로 줌
+    min_num_sum = sum(nums_list[:M])  # 0주면 안되서 처음 합으로 줌
+
+    for i in range(len(nums_list)-M+1) :  # 구간 때문에 길이 계산
+        
+        selection_sum = sum(nums_list[i:i+M])
+        
+        if selection_sum > max_num_sum :
+            max_num_sum = selection_sum  
+
+        if selection_sum < min_num_sum :
+            min_num_sum = selection_sum
+
+    print('#{} {}'.format(rep + 1, max_num_sum - min_num_sum))
+````
+
