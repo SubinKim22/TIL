@@ -581,3 +581,106 @@ for rep in range(T) :
     print('#{} {}'.format(rep + 1, max_num_sum - min_num_sum))
 ````
 
+
+
+
+
+
+
+### 22.02.18
+
+#### 알고리즘 특강 3일차
+
+1. 구슬치기 게임
+
+```
+T = int(input())
+
+for rep in range(T) :
+   
+    num_list = list(map(int,input().split()))
+    
+    count_dict = dict()
+
+    for num in num_list:
+        if not count_dict.get(num) :     # not none  =>  True !!!
+            count_dict[num] = 1
+        else :
+            count_dict[num] += 1
+
+    Kkakdugi = 0
+
+    for key, _ in count_dict.items() :   # value는 필요없으므로 _ 처리
+        if count_dict[key] == 1 :
+            Kkakdugi = key
+
+    print('#{} {}'.format(rep + 1, Kkakdugi))
+```
+
+
+
+2. 세로로 말해요
+
+```
+T = int(input())
+
+for rep in range(T):
+    
+    string = []
+    vertical_string = ""
+    
+    for i in range(5):
+        input_str = input()
+        string.append(input_str)
+
+    max_len = 0
+    
+    for k in string:
+        if len(k) > max_len:
+            max_len = len(k)
+
+    for c in range(max_len):
+        for r in range(len(string)):
+            try:
+                vertical_string += string[r][c]
+            except:
+                pass
+
+    print("#{} {}".format(rep + 1, vertical_string))
+```
+
+```
+# 리스트 컴프리헨션
+string = [input() for i in range(5)]
+vertical_string = ""
+max_len = max(len(k) for k in string)
+
+for c in range(max_len):
+    for r in range(len(string)):
+        try:
+            vertical_string += string[r][c]
+        except:
+            pass
+
+print(vertical_string)
+```
+
+```
+# try-except 없이 코드짜기 => 애초에 if문으로 길이가 짧은 문자열은 아예 추가가 안되게함.
+T = int(input())
+
+for rep in range(T):
+    words = [input() for _ in range(5)]
+    max_len = max(len(word) for word in words)  # 가장 긴 문자열을 기준으로 설정
+    vertical_string = ""
+
+    for i in range(max_len):
+        for word in words:
+            if i < len(word):  # 길이가 짧은 문자열에 대해 에러 방지
+                vertical_string += word[i]
+
+    print(f"#{rep+1} {vertical_string}")
+```
+
+
+
