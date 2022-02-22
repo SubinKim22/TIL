@@ -745,4 +745,6 @@ Y_result = model.predict_classes(X_test)
 
 #### 역전파 (Back-propagation)
 
+![image-20220222154142755](https://user-images.githubusercontent.com/98443426/155079281-94563081-8c83-48df-8247-85f5cb1c8e21.png)
+
 ![image-20220222154142755](TIL.assets/image-20220222154142755.png)
