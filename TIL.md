@@ -587,7 +587,7 @@ for rep in range(T) :
 
 
 
-### 22.02.18
+## 22.02.18
 
 #### 알고리즘 특강 3일차
 
@@ -684,3 +684,65 @@ for rep in range(T):
 
 
 
+
+
+## 22.02.22
+
+### 딥러닝의 이해
+
+```
+import tensorflow as tf
+import keras
+
+# 딥러닝에 필요한 케라스 함수 호출
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+import numpy as np
+import tensorflow as tf
+
+np.random.seed(1)
+tf.random.set_seed(1)
+
+Data_set = np.loadtxt('dataset/ThoraricSurgery.csv', delimiter = ",")
+Data_set.shape
+
+X = Data_set[:,0:17]
+Y = Data_set[:,17]
+
+# 딥러닝 모델 구조 설정(2개층, 속성(독립변수,피처)이 17개 input값, 
+#                      relu와 sigmoid 활성화 함수 이용)
+model = Sequential()
+model.add(Dense(30, input_dim = 17, activation = 'relu'))
+model.add(Dense(1, activation = 'sigmoid'))
+
+# 딥러닝 실행(오차함수는 교차엔트로피, 최적화함수는 adam)
+# 교차엔트로피 : 이진분류에서 사용
+model.compile(loss = 'binary_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
+model.fit(X,Y, epochs = 100, batch_size = 10)
+
+------------------------------------------------------------------------------------------------------------
+
+# 만들어진 모델 저장
+model.save('predict_model')
+
+# 케라스 함수 호출
+from keras.models import load_model
+
+# test 데이터 호출
+Dataset_test = np.loadtxt('text.csv', delimiter = ",")
+X_test = Dataset_test[:,0:17]
+Y_result = []
+
+# 모델 불러오기
+model = load_model('predict_model')
+
+# 모델 적합  =>  모델 저장 안하고 변수 지정 후 사용할 수 있을듯?
+Y_result = model.predict_classes(X_test)
+```
+
+
+
+#### 역전파 (Back-propagation)
+
+![image-20220222154142755](TIL.assets/image-20220222154142755.png)
