@@ -724,7 +724,7 @@ model.fit(X,Y, epochs = 100, batch_size = 10)
 ------------------------------------------------------------------------------------------------------------
 
 # 만들어진 모델 저장
-model.save('predict_model')
+model.save('predict_model.h5')
 
 # 케라스 함수 호출
 from keras.models import load_model
@@ -735,7 +735,7 @@ X_test = Dataset_test[:,0:17]
 Y_result = []
 
 # 모델 불러오기
-model = load_model('predict_model')
+model = load_model('predict_model.h5')
 
 # 모델 적합  =>  모델 저장 안하고 변수 지정 후 사용할 수 있을듯?
 Y_result = model.predict_classes(X_test)
@@ -747,4 +747,19 @@ Y_result = model.predict_classes(X_test)
 
 ![image-20220222154142755](https://user-images.githubusercontent.com/98443426/155079281-94563081-8c83-48df-8247-85f5cb1c8e21.png)
 
-![image-20220222154142755](TIL.assets/image-20220222154142755.png)
+
+
+
+
+## 22.02.23
+
+### 딥러닝의 이해
+
+#### 과적합
+
+![image](https://user-images.githubusercontent.com/98443426/155302272-836ad410-003f-49a5-af1c-903c38dc04f0.png)
+
+
+
+* 과적합은 층이 너무 많을 때, 변수가 복잡할 때, 테스트셋과 학습셋이 중복될 때 생기기도 함
+* 예제는 project -> rice/wine 예제 -> 02.23 커밋 확인
