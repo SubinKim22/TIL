@@ -763,3 +763,34 @@ Y_result = model.predict_classes(X_test)
 
 * 과적합은 층이 너무 많을 때, 변수가 복잡할 때, 테스트셋과 학습셋이 중복될 때 생기기도 함
 * 예제는 project -> rice/wine 예제 -> 02.23 커밋 확인
+
+
+
+
+
+## 22.02.24
+
+### 딥러닝을 이용한 자연어 처리
+
+#### 토큰화
+
+> 입력된 텍스트를 잘게 나누는 과정, 텍스트(문장)를 단어별, 문장별, 형태소별로 나눌 수 있는데, 나누어져서 의미가 있는 단위로 만듬
+
+```
+from tensorflow.keras.preprocessing.text import text_to_word_sequence
+ 
+text = '해보지 않으면 해낼 수 없다'
+
+result = text_to_word_sequence(text)
+print("\n원문:\n", text)
+print("\n토큰화:\n", result) 
+
+---------------------------------
+
+원문:
+ 해보지 않으면 해낼 수 없다
+
+토큰화:
+ ['해보지', '않으면', '해낼', '수', '없다']
+```
+
