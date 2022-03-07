@@ -841,3 +841,53 @@ print("\n토큰화:\n", result)
 
 
 
+
+
+## 22.03.07
+
+### SQL 기본문법
+
+```
+show databases;
+
+show databases like "s%";
+show databases like "%s";
+show databases like "%a%";
+
+use world;
+
+select database();
+
+show tables;
+
+SELECT name FROM country;
+SELECT name, gnp FROM country;
+
+SELECT * FROM country;
+
+SELECT name, continent FROM country ORDER BY name;
+
+# 중복 제거
+SELECT DISTINCT Isofficial FROM countrylanguage;
+
+SELECT count(code) FROM country;
+SELECT count(code), count(name) FROM country;
+
+SELECT count(DISTINCT IsOfficial) AS counting FROM countrylanguage;
+
+#조건
+SELECT name, continent, population FROM country
+WHERE continent='Asia' AND name='South Korea';
+
+#조건 + 상위10개
+select name, continent, surfacearea/population as surareapop from country
+where continent='Asia' order by surareapop desc
+limit 10;
+
+#if-else문
+CASE WHEN [조건1] THEN [결과1]
+     WHEN [조건2] THEN [결과2]
+     ELSE [결과3]
+END AS 새로운컬럼명
+```
+
